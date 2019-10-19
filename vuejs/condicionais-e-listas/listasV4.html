@@ -8,8 +8,19 @@
     <hr>
     <template v-for="(cor, i) in cores">
         <h1>{{ cor }}</h1>
-        <h1>{{ i }}</h1>
+        <h3>{{ i }}</h3>
     </template>
+    <hr>
+    <ul v-for="pessoa in pessoas">
+        <li>
+            {{ pessoa.nome}}
+        </li>
+    </ul>
+    <ul v-for="pessoa in pessoas">
+          <span v-for="(valor, chave, index) in pessoa">
+            {{ chave }} = {{ valor }} ({{ index + 1 }})
+          </span>
+        </ul>
 </div>
 
 <script>
@@ -33,5 +44,9 @@
 <style>
     ul {
         list-style: none;
+    }
+
+    h1, h3{
+        display: inline;
     }
 </style>

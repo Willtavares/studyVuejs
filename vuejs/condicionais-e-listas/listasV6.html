@@ -3,13 +3,28 @@
 <!-- Acessando Indice -->
 <div id="app">
     <ul>
-        <li v-for="(cor, i) in cores">{{ i + 1 }}) - {{ cor }}</li>
+        <li v-for="(cor, i) in cores" :key="cor">{{ i + 1 }}) - {{ cor }}</li>
     </ul>
+    <button @click="cores.push('branca')">Adicionar</button>
     <hr>
     <template v-for="(cor, i) in cores">
         <h1>{{ cor }}</h1>
-        <h1>{{ i }}</h1>
+        <h3>{{ i }}</h3>
     </template>
+    <hr>
+    <ul v-for="pessoa in pessoas">
+        <li>
+            {{ pessoa.nome}}
+        </li>
+    </ul>
+    <hr>
+    <ul v-for="pessoa in pessoas">
+          <span v-for="(valor, chave, index) in pessoa">
+            {{ chave }} = {{ valor }} ({{ index + 1 }})
+          </span>
+    </ul>
+    <hr>
+    <span v-for="n in 10">{{ n }}</span>
 </div>
 
 <script>
@@ -25,7 +40,7 @@
             ]
         },
         methods:{
-
+        
         }
     })
 </script>
@@ -33,5 +48,9 @@
 <style>
     ul {
         list-style: none;
+    }
+
+    h1, h3{
+        display: inline;
     }
 </style>
