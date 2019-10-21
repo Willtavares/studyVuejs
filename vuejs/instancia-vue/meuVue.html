@@ -1,0 +1,104 @@
+<!-- <meta charset="UTF-8">
+
+<div id="app">
+    {{ nome }} {{ sobrenome }} {{1 + 1}}
+</div>
+
+<script>
+    function MeuVue(params) {
+        this.$el = document.querySelector(params.el)
+        this.$data = params.data
+
+        for (let atr in this.data) {
+            Object.defineProperties(this, atr, {
+                get: () => {
+                    return this.$data[atr]
+                },
+                set: value => {
+                    // ...
+                    this.$data[atr] = value
+                    // ...
+                }
+            })            
+        }
+
+        // interpolar
+        const regex = /\{\{([\s\w+]*)\}\}/g
+        this.$el.innerHTML = this.$el.innerHTML.replace(regex, (match, $1) => {
+            const value = this[$1.trim()]
+            return value ? value : eval($1)
+        })
+    }
+
+    const vm = new MeuVue({
+        el: '#app',
+        data: {
+            nome: 'William',
+            sobrenome: 'Tavares'
+        }
+    })
+
+    console.log(vm.nome);
+    console.log(vm.$data.nome);
+    
+    
+</script> -->
+
+
+<meta charset="UTF-8">
+<title>Meu Vue Framework</title>
+<!--Codigo para ter referencia como o framework funciona por debaixo dos panos, sendo uma mini aplicação-->
+<div id="app">
+    {‌{nome}} {‌{sobrenome}} {‌{1 + 1}}
+</div>
+<script>
+    function meuVue(params) {
+        this.$el = document.querySelector(params.el)
+            //Está pegando o elemento dom e assim coloca dentro da variavel el.
+            //que foi obido apartir do quer selector
+        this.$data = params.data //Para criação para se ter elementos manipulaveis dentro da data/igual no vue
+ 
+        for (let atr in this.$data) {
+            //Forma para pegar os atributos que estão dentro de data.
+            //Pega cada atributo
+            //Para cada atributo, se define uma propiedade.
+            Object.defineProperty(this, atr, {
+                //Define o objeto que deseja criar a propiedade, que é o this
+                //o segundoo parametro é o nome do atributo que se quer crirar r o objeto é para personalizar
+                get: () => {
+                    //o metodo get serve como proxy, a partir dessa propiedade, retorna outra propiedade
+                    return this.$data[atr]
+ 
+                },
+                set: value => {
+                    //consegue interceptar o momento que mudpu a propiedade
+                    this.$data[atr] = value
+                        //Isso lê a variavel e assim muda o valor dela 
+                }
+ 
+            })
+        }
+        //Parte para interpolar as funções 
+        const regex = /\{\{([\s\w+-*]*)\}\}/g
+ 
+        //Se conntroi uma regex.
+        this.$el.innerHTML = this.$el.innerHTML.replace(regex, (match, $1) => {
+            const value = this[$1.trim()]
+            return value ? value : eval($1)
+        })
+ 
+    }
+    const vm = new meuVue({ //Função construtora para o frame assim 
+        el: "#app",
+        data: {
+            nome: "maria",
+            sobrenome: "joaquina"
+        }
+    })
+    console.log(vm.nome); //Um é apenas proxy, para ler e tal
+    console.log(vm.$data.nome); //Indica o local certo aonde está a variavel.
+    vm.nome = "pedro"
+        //Vue gerencia uma mudança dessa forma. Sendo dessa forma que o vue funciona 
+    console.log(vm.nome);
+    console.log(vm.$data.nome)
+</script>

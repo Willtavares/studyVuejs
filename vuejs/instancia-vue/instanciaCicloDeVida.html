@@ -1,0 +1,42 @@
+<meta charset="UTF-8">
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <h1>{{ titulo }}</h1>
+    <button @click="titulo += '#'">Alterando o Titulo</button>
+    <button @click="$destroy()">Destruir</button>
+</div>
+
+<script>
+const vm = new Vue({
+    el: '#app',
+    data:{
+        titulo: 'ciclo de vida'
+    },
+    beforeCreate(){
+        console.log('Antes de Criar');
+    },
+    created(){
+        console.log('Criado');
+    },
+    beforeMount(){
+        console.log('Antes de montar a DOM');
+    },
+    mounted(){
+        console.log('DOM montada');
+    },
+    beforeUpdate(){
+        console.log('Antes de Atualizar');
+    },
+    updated(){
+        console.log('Atualizado');
+        
+    },
+    beforeDestroy(){
+        console.log('Antes de destruir');
+    },
+    destroyed(){
+        console.log('Destruido');
+    }
+})
+</script>
